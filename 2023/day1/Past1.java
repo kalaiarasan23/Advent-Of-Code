@@ -9,46 +9,27 @@ public class Past1 {
 		BufferedReader br = new BufferedReader(new FileReader("/home/kalaiarasan/Music/AdventOfCode/code1.txt"));
 		int sum=0;
 		String s = "";
-		while((s =br.readLine()) !=null)
-		{
-	int i=0,j=s.length()-1;
-	char first='\0',last='\0',firstTemp='\0',lastTemp='\0';
-	
-	while(i <=j)
-	{
-		if(Character.isDigit(s.charAt(i))) 
-		{
-			if(first == '\0')
-				first=s.charAt(i);
-			firstTemp =s.charAt(i);
-		}
 		
-		if(Character.isDigit(s.charAt(j))) 
+		while((s =br.readLine()) !=null) // read th file from the directory
 		{
-			if(last == '\0')
-				last = s.charAt(j);
-			lastTemp = s.charAt(j);
+			int i=0,j=s.length()-1;
+			char first='\0',last='\0';
+	
+			while(i < s.length())					// traverse the string from 0 to n 
+			{
+				if(Character.isDigit(s.charAt(i)))  // the digit(0-1) comes 
+				{	
+					if(first == '\0')				// first time it store the value in first variable, it is one time use
+						first=s.charAt(i);
+					last=s.charAt(i);				
+				}
+				i++;
+			}
+	
+			System.out.println(first+" "+last);
+			sum+= Integer.parseInt(String.valueOf(first)+String.valueOf(last));
 		}
-		i++;
-		j--;
-	}
-	
-	if(first == '\0')
-		first = lastTemp;
-	
-	if(last =='\0')
-			last=firstTemp;
-
-	System.out.println(first+" "+last);
-	
-	if(first == '\0' && last == '\0')
-		sum+=0;
-	else
-		sum+= Integer.parseInt(String.valueOf(first)+String.valueOf(last));
-	}
 	System.out.println(sum);
 	br.close();
 	}
-	
-	
 }
